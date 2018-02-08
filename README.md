@@ -124,21 +124,16 @@ We don't provide flyway migrations to load initial policies.
 However if you start up the application with the spring.profiles.active=dev then all the policies
 in the folder `OpenConext-pdp/pdp-server/src/main/resources/xacml/policies` are added to the database. Do note that any other policies already in the database are deleted.
 
-### Service Registry
+### Manage
 
-The pdp-server needs to access the metadata of Identity and Service providers from the Service Registry. In production modus the content is read (and periodically refreshed)
-from the API exposed by the [metadata provider](https://github.com/OpenConext/OpenConext-metadata-exporter):
-
-* https://multidata.surfconext.nl/service-providers.json
-* https://multidata.surfconext.nl/identity-providers.json
+The pdp-server needs to access the metadata of Identity and Service providers from Manage. 
+In production modus the content is read (and periodically refreshed)
+from the API exposed by the [manage](https://github.com/OpenConext/OpenConext-manage/wiki/API).
 
 In any other modus the content is read from the file system:
 
-* [saml20-idp-remote.json](pdp-server/src/main/resources/service-registry/saml20-idp-remote.json)
-* [saml20-sp-remote.json](pdp-server/src/main/resources/service-registry/saml20-sp-remote.json)
-
-To sync the data of the file system with the test data of `https://multidata.test.surfconext.nl` run the [refreshEntityMetadata](pdp-server/scripts/refreshEntityMetadata.sh)
-script.
+* [identity-providers.json](pdp-server/src/main/resources/manage/identity-providers.json.json)
+* [service-providers.json](pdp-server/src/main/resources/manage/service-providers.json)
 
 ### Configuration and Deployment
 
